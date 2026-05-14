@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Doctors</title>
+</head>
+<body>
+<div th:replace="~{fragments/nav :: navbar}"></div>
+
+<h2>Doctors</h2>
+
+<a sec:authorize="hasRole('ADMIN')" href="/doctors/new">Add New Doctor</a>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>UIN</th>
+        <th>Name</th>
+        <th>Speciality</th>
+        <th>GP</th>
+        <th sec:authorize="hasRole('ADMIN')">Actions</th>
+    </tr>
+    <tr th:each="doctor : ${doctors}">
+        <td th:text="${doctor.id}"></td>
+        <td th:text="${doctor.uin}"></td>
+        <td th:text="${doctor.name}"></td>
+        <td th:text="${doctor.speciality}"></td>
+        <td th:text="${doctor.gp}"></td>
+        <td sec:authorize="hasRole('ADMIN')">
+            <a th:href="@{/doctors/edit/{id}(id=${doctor.id})}">Edit</a> |
+            <a th:href="@{/doctors/delete/{id}(id=${doctor.id})}">Delete</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Doctor Form</title>
+</head>
+<body>
+<div th:replace="~{fragments/nav :: navbar}"></div>
+
+<h2>Doctor Form</h2>
+
+<form th:action="@{/doctors/save}" th:object="${doctor}" method="post">
+    <input type="hidden" th:field="*{id}"/>
+
+    <label>UIN</label>
+    <input type="text" th:field="*{uin}"/>
+    <span th:if="${#fields.hasErrors('uin')}" th:errors="*{uin}"></span><br/>
+
+    <label>Name</label>
+    <input type="text" th:field="*{name}"/>
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span><br/>
+
+    <label>Speciality</label>
+    <input type="text" th:field="*{speciality}"/>
+    <span th:if="${#fields.hasErrors('speciality')}" th:errors="*{speciality}"></span><br/>
+
+    <label>Is GP</label>
+    <input type="checkbox" th:field="*{gp}"/><br/>
+
+    <button type="submit">Save</button>
+</form>
+</body>
+</html>

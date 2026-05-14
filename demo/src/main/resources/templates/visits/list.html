@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Visits</title>
+</head>
+<body>
+<div th:replace="~{fragments/nav :: navbar}"></div>
+
+<h2>Visits</h2>
+
+<a sec:authorize="hasAnyRole('ADMIN', 'DOCTOR')" href="/visits/new">Add New Visit</a>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Date</th>
+        <th>Doctor ID</th>
+        <th>Patient ID</th>
+        <th>Diagnosis ID</th>
+        <th>Treatment</th>
+        <th>Price</th>
+        <th>Paid by NZOK</th>
+        <th sec:authorize="hasAnyRole('ADMIN', 'DOCTOR')">Actions</th>
+    </tr>
+    <tr th:each="visit : ${visits}">
+        <td th:text="${visit.id}"></td>
+        <td th:text="${visit.date}"></td>
+        <td th:text="${visit.doctorId}"></td>
+        <td th:text="${visit.patientId}"></td>
+        <td th:text="${visit.diagnosisId}"></td>
+        <td th:text="${visit.treatment}"></td>
+        <td th:text="${visit.price}"></td>
+        <td th:text="${visit.paidByNzok}"></td>
+        <td sec:authorize="hasAnyRole('ADMIN', 'DOCTOR')">
+            <a th:href="@{/visits/edit/{id}(id=${visit.id})}">Edit</a> |
+            <a sec:authorize="hasRole('ADMIN')"
+               th:href="@{/visits/delete/{id}(id=${visit.id})}">Delete</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

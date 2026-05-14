@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Most Common Diagnosis</title>
+</head>
+<body>
+<div th:replace="~{fragments/nav :: navbar}"></div>
+
+<h2>Most Common Diagnosis</h2>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td th:text="${diagnosis.id}"></td>
+        <td th:text="${diagnosis.name}"></td>
+        <td th:text="${diagnosis.description}"></td>
+    </tr>
+</table>
+</body>
+</html>

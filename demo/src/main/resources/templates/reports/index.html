@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reports</title>
+</head>
+<body>
+<div th:replace="~{fragments/nav :: navbar}"></div>
+
+<h2>Reports</h2>
+
+<h3>Patients</h3>
+<form th:action="@{/reports/patients-by-diagnosis}" method="get">
+    <label>Patients by Diagnosis</label>
+    <select name="diagnosisId">
+        <option value="">-- Select Diagnosis --</option>
+        <option th:each="diagnosis : ${diagnoses}"
+                th:value="${diagnosis.id}"
+                th:text="${diagnosis.name}">
+        </option>
+    </select>
+    <button type="submit">Search</button>
+</form>
+
+<br/>
+
+<form th:action="@{/reports/patients-by-gp}" method="get">
+    <label>Patients by GP</label>
+    <select name="gpDoctorId">
+        <option value="">-- Select Doctor --</option>
+        <option th:each="doctor : ${doctors}"
+                th:value="${doctor.id}"
+                th:text="${doctor.name}">
+        </option>
+    </select>
+    <button type="submit">Search</button>
+</form>
+
+<br/>
+<a th:href="@{/reports/count-per-gp}">Patient Count per GP</a>
+
+<h3>Visits</h3>
+<a th:href="@{/reports/most-common-diagnosis}">Most Common Diagnosis</a><br/>
+<a th:href="@{/reports/total-paid-by-patients}">Total Paid by Patients</a><br/>
+<a th:href="@{/reports/total-paid-per-doctor}">Total Paid by Patients per Doctor</a><br/>
+<a th:href="@{/reports/count-per-doctor}">Visit Count per Doctor</a><br/>
+
+<br/>
+
+<form th:action="@{/reports/visits-by-patient}" method="get">
+    <label>Visit History by Patient</label>
+    <select name="patientId">
+        <option value="">-- Select Patient --</option>
+        <option th:each="patient : ${patients}"
+                th:value="${patient.id}"
+                th:text="${patient.name}">
+        </option>
+    </select>
+    <button type="submit">Search</button>
+</form>
+
+<br/>
+
+<form th:action="@{/reports/visits-filter}" method="get">
+    <label>Filter Visits by Doctor and Period</label><br/>
+    <select name="doctorId">
+        <option value="">-- All Doctors --</option>
+        <option th:each="doctor : ${doctors}"
+                th:value="${doctor.id}"
+                th:text="${doctor.name}">
+        </option>
+    </select><br/>
+    <label>From</label>
+    <input type="date" name="from"/><br/>
+    <label>To</label>
+    <input type="date" name="to"/><br/>
+    <button type="submit">Search</button>
+</form>
+
+<h3>Sick Leaves</h3>
+<a th:href="@{/reports/month-with-most-sick-leaves}">Month with Most Sick Leaves</a><br/>
+<a th:href="@{/reports/doctors-with-most-sick-leaves}">Doctors with Most Sick Leaves</a>
+
+</body>
+</html>

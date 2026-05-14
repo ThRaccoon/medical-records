@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Diagnosis Form</title>
+</head>
+<body>
+<div th:replace="~{fragments/nav :: navbar}"></div>
+
+<h2>Diagnosis Form</h2>
+
+<form th:action="@{/diagnoses/save}" th:object="${diagnosis}" method="post">
+    <input type="hidden" th:field="*{id}"/>
+
+    <label>Name</label>
+    <input type="text" th:field="*{name}"/>
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span><br/>
+
+    <label>Description</label>
+    <input type="text" th:field="*{description}"/>
+    <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span><br/>
+
+    <button type="submit">Save</button>
+</form>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body>
+<nav th:fragment="navbar">
+    <a th:href="@{/}">Home</a> |
+    <a sec:authorize="hasAnyRole('ADMIN', 'DOCTOR')" th:href="@{/doctors}">Doctors</a> |
+    <a sec:authorize="hasAnyRole('ADMIN', 'DOCTOR')" th:href="@{/patients}">Patients</a> |
+    <a sec:authorize="hasAnyRole('ADMIN', 'DOCTOR')" th:href="@{/visits}">Visits</a> |
+    <a sec:authorize="hasRole('PATIENT')" th:href="@{/visits/my}">My Visits</a> |
+    <a th:href="@{/diagnoses}">Diagnoses</a> |
+    <a sec:authorize="hasAnyRole('ADMIN', 'DOCTOR')" th:href="@{/sick-leaves}">Sick Leaves</a> |
+    <a sec:authorize="hasAnyRole('ADMIN', 'DOCTOR')" th:href="@{/reports}">Reports</a> |
+    <a th:href="@{/logout}">Logout</a>
+</nav>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Filter Visits</title>
+</head>
+<body>
+<div th:replace="~{fragments/nav :: navbar}"></div>
+
+<h2>Filter Visits by Doctor and Period</h2>
+
+<form th:action="@{/reports/visits-filter}" method="get">
+    <label>Doctor</label>
+    <select name="doctorId">
+        <option value="">-- All Doctors --</option>
+        <option th:each="doctor : ${doctors}"
+                th:value="${doctor.id}"
+                th:text="${doctor.name}"
+                th:selected="${doctor.id == selectedDoctorId}">
+        </option>
+    </select><br/>
+
+    <label>From</label>
+    <input type="date" name="from" th:value="${from}"/><br/>
+
+    <label>To</label>
+    <input type="date" name="to" th:value="${to}"/><br/>
+
+    <button type="submit">Search</button>
+</form>
+
+<br/>
+
+<table border="1" th:if="${visits != null}">
+    <tr>
+        <th>ID</th>
+        <th>Date</th>
+        <th>Doctor ID</th>
+        <th>Patient ID</th>
+        <th>Diagnosis ID</th>
+        <th>Treatment</th>
+        <th>Price</th>
+        <th>Paid by NZOK</th>
+    </tr>
+    <tr th:each="visit : ${visits}">
+        <td th:text="${visit.id}"></td>
+        <td th:text="${visit.date}"></td>
+        <td th:text="${visit.doctorId}"></td>
+        <td th:text="${visit.patientId}"></td>
+        <td th:text="${visit.diagnosisId}"></td>
+        <td th:text="${visit.treatment}"></td>
+        <td th:text="${visit.price}"></td>
+        <td th:text="${visit.paidByNzok}"></td>
+    </tr>
+</table>
+</body>
+</html>

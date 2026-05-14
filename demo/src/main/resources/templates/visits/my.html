@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My Visits</title>
+</head>
+<body>
+<div th:replace="~{fragments/nav :: navbar}"></div>
+
+<h2>My Visits</h2>
+
+<table border="1">
+    <tr>
+        <th>Date</th>
+        <th>Doctor ID</th>
+        <th>Diagnosis ID</th>
+        <th>Treatment</th>
+        <th>Price</th>
+        <th>Paid by NZOK</th>
+    </tr>
+    <tr th:each="visit : ${visits}">
+        <td th:text="${visit.date}"></td>
+        <td th:text="${visit.doctorId}"></td>
+        <td th:text="${visit.diagnosisId}"></td>
+        <td th:text="${visit.treatment}"></td>
+        <td th:text="${visit.price}"></td>
+        <td th:text="${visit.paidByNzok}"></td>
+    </tr>
+</table>
+</body>
+</html>

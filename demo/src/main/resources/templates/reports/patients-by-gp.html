@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Patients by GP</title>
+</head>
+<body>
+<div th:replace="~{fragments/nav :: navbar}"></div>
+
+<h2>Patients by GP</h2>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>EGN</th>
+        <th>Insured</th>
+    </tr>
+    <tr th:each="patient : ${patients}">
+        <td th:text="${patient.id}"></td>
+        <td th:text="${patient.name}"></td>
+        <td th:text="${patient.egn}"></td>
+        <td th:text="${patient.insured}"></td>
+    </tr>
+</table>
+</body>
+</html>

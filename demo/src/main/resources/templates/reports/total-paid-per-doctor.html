@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Total Paid per Doctor</title>
+</head>
+<body>
+<div th:replace="~{fragments/nav :: navbar}"></div>
+
+<h2>Total Paid by Patients per Doctor</h2>
+
+<table border="1">
+    <tr>
+        <th>Doctor Name</th>
+        <th>Total</th>
+    </tr>
+    <tr th:each="row : ${data}">
+        <td th:text="${row[1]}"></td>
+        <td th:text="${row[2]}"></td>
+    </tr>
+</table>
+</body>
+</html>

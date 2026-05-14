@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Month with Most Sick Leaves</title>
+</head>
+<body>
+<div th:replace="~{fragments/nav :: navbar}"></div>
+
+<h2>Month with Most Sick Leaves</h2>
+
+<table border="1">
+    <tr>
+        <th>Year</th>
+        <th>Month</th>
+        <th>Count</th>
+    </tr>
+    <tr th:each="row : ${data}">
+        <td th:text="${row[1]}"></td>
+        <td th:text="${row[0]}"></td>
+        <td th:text="${row[2]}"></td>
+    </tr>
+</table>
+</body>
+</html>

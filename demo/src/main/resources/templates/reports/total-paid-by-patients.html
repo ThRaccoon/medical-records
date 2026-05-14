@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Total Paid by Patients</title>
+</head>
+<body>
+<div th:replace="~{fragments/nav :: navbar}"></div>
+
+<h2>Total Paid by Patients</h2>
+
+<p>Total: <span th:text="${total}"></span></p>
+</body>
+</html>
